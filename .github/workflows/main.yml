@@ -18,11 +18,8 @@ jobs:
           curl -L https://github.com/raysan5/raylib/releases/download/3.7.0/raylib-3.7.0_webassembly.zip > rlib.zip
           unzip rlib.zip
           rm -rf rlib.zip
-          echo
-          echo "emcc src/main.c -o index.html -Iraylib-3.7.0_webassembly/include -Lraylib-3.7.0_webassembly/lib -lraylib"
-          echo
-          emcc src/main.c -o index.html -Iraylib-3.7.0_webassembly/include -Lraylib-3.7.0_webassembly/lib -lraylib
-
+          make PLATFORM=PLATFORM_WEB RAYLIB_PATH=raylib-3.7.0_webassembly PROJECT_SOURCE_FILE=src/main.c EMSDK_PATH=$PWD/emsdk -B
+          
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
