@@ -9,14 +9,13 @@ jobs:
 
       - name: Install and Build # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          VER=3.7.0
           git clone https://github.com/emscripten-core/emsdk
           cd emsdk
           ./emsdk install latest
           ./emsdk activate latest
           source emsdk_env.sh
           cd ..
-          curl -L https://github.com/raysan5/raylib/releases/download/$VER/raylib-$VER_webassembly.zip > rlib.zip
+          curl -L https://github.com/raysan5/raylib/releases/download/3.7.0/raylib-3.7.0_webassembly.zip > rlib.zip
           unzip rlib.zip -d rlib
           rm -rf rlib.zip
           emcc src/main.c -o index.html -Irlib/include -Lrlib/lib -lraylib
