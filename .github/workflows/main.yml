@@ -17,9 +17,11 @@ jobs:
           cd ..
           curl -L https://github.com/raysan5/raylib/releases/download/3.7.0/raylib-3.7.0_webassembly.zip > rlib.zip
           unzip rlib.zip
-          DIR=raylib*
           rm -rf rlib.zip
-          emcc src/main.c -o index.html -I$DIR/include -L$DIR/lib -lraylib
+          echo
+          echo "emcc src/main.c -o index.html -Iraylib-3.7.0_webassembly/include -Lraylib-3.7.0_webassembly/lib -lraylib"
+          echo
+          emcc src/main.c -o index.html -Iraylib-3.7.0_webassembly/include -Lraylib-3.7.0_webassembly/lib -lraylib
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.3
